@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const ApiLink = "https://taqat-api-33wara.vercel.app"
+export const ApiLink = "https://taqat-api.vercel.app"
 export const LocalApi = "http://localhost:5000"
 
 const Api = axios.create({

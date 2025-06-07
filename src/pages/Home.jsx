@@ -3,9 +3,10 @@ import React from 'react'
 import { Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { ApiLink } from '../Config/Api';
 
 const handleDownload = async () => {
-    const response = await fetch("https://taqat-api-3wara.vercel.app/api/tasks/export");
+    const response = await fetch(`${ApiLink}/api/tasks/export`);
     const blob = await response.blob();
     const url = window.URL.createObjectURL(blob);
 
