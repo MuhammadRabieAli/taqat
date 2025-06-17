@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Configure dark mode for manual toggling */
+@variant dark (&:where(.dark, .dark *));
+
 
 
 /* تأثير حركة الصورة */

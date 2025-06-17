@@ -10,13 +10,15 @@ import Sub_Main from "./pages/Sun_Main";
 import SubMainDetails from "./pages/SubMainDetails";
 import Kader from "./pages/Kader";
 import Deadline from "./pages/deadline";
+import ThemeToggle from "./components/ThemeToggle";
 
 
 function App() {
 
 
   return (
-    <>
+    <div className="min-h-screen bg-white">
+      <ThemeToggle />
       <Navbar />
       
       <Routes>
@@ -74,7 +76,7 @@ function App() {
         />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 
