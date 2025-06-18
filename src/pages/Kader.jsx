@@ -91,18 +91,35 @@ const Kader = () => {
     
     try {
       if (editId) {
-        // في وضع التعديل، نرسل جميع الحقول حتى لو كانت فارغة
-        // نرسل سلسلة فارغة للحقول المحذوفة
+        // في وضع التعديل، نرسل جميع الحقول كما هي
+        // للأسماء الفارغة، نضع "غير محدد"
         const updateData = {
-          name: formData.name.trim() === '' ? '' : formData.name,
-          tasks: formData.tasks.trim() === '' ? '' : formData.tasks
+          name: formData.name && formData.name.trim() ? formData.name.trim() : 'غير محدد',
+          tasks: formData.tasks && formData.tasks.trim() ? formData.tasks.trim() : ''
         };
         
+        // إضافة معرف خاص للحقول المحذوفة
+        if (!formData.name || formData.name.trim() === '') {
+          updateData._deleteName = true;
+        }
+        if (!formData.tasks || formData.tasks.trim() === '') {
+          updateData._deleteTasks = true;
+        }
+        
+        console.log('Original form data:', formData);
         console.log('Sending Kader update data:', updateData);
+        console.log('Edit ID:', editId);
         
         const response = await Api.patch(`/api/kader/${editId}`, updateData);
         
         console.log('Kader response data:', response.data);
+        console.log('Updated kader data:', response.data.data);
+        
+        // تحقق من البيانات المحدثة
+        if (response.data.data) {
+          console.log('Updated name:', response.data.data.name);
+          console.log('Updated tasks:', response.data.data.tasks);
+        }
         
         successNotification('تم التحديث بنجاح');
       } else {
@@ -114,7 +131,7 @@ const Kader = () => {
         await Api.post("/api/kader/add", { ...formData, submainId });
         successNotification('تم الإنشاء بنجاح');
       }
-      fetchData();
+      await fetchData();
       closeModal();
     } catch (err) {
       console.error("Submit error:", err);

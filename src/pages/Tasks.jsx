@@ -137,10 +137,20 @@ function Tasks() {
   };
 
   const handleEdit = (task) => {
+    console.log('Editing task:', task);
     setShowModal(true);
     setIsEditing(true);
     setEditTaskId(task._id);
     setForm({
+      submainId: task.submainId?._id || id,
+      username: task.username || '',
+      date: task.date ? task.date.split('T')[0] : new Date().toISOString().split('T')[0],
+      tasks: task.tasks || '',
+      remainingWork: task.remainingWork || '',
+      number: task.number || '',
+      notes: task.notes || '',
+    });
+    console.log('Form set to:', {
       submainId: task.submainId?._id || id,
       username: task.username || '',
       date: task.date ? task.date.split('T')[0] : new Date().toISOString().split('T')[0],
@@ -160,7 +170,12 @@ function Tasks() {
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    console.log(`Form field changed: ${name} = "${value}"`);
+    setForm((prev) => {
+      const newForm = { ...prev, [name]: value };
+      console.log('New form state:', newForm);
+      return newForm;
+    });
   };
 
   const handleColorChange = (color) => {
@@ -182,14 +197,28 @@ function Tasks() {
     };
 
     if (isEditing) {
-      // في وضع التعديل، نرسل جميع الحقول حتى لو كانت فارغة
-      // نرسل سلسلة فارغة للحقول المحذوفة
-      cleanedForm.username = form.username.trim() === '' ? '' : form.username;
+      // في وضع التعديل، نرسل جميع الحقول كما هي
+      // للحقول الفارغة، نضع "غير محدد" للأسماء والقيم الفارغة للحقول الأخرى
+      cleanedForm.username = form.username && form.username.trim() ? form.username.trim() : 'غير محدد';
       cleanedForm.date = form.date || '';
-      cleanedForm.tasks = form.tasks.trim() === '' ? '' : form.tasks;
-      cleanedForm.remainingWork = form.remainingWork.trim() === '' ? '' : form.remainingWork;
-      cleanedForm.number = form.number === '' ? '' : form.number;
-      cleanedForm.notes = form.notes.trim() === '' ? '' : form.notes;
+      cleanedForm.tasks = form.tasks && form.tasks.trim() ? form.tasks.trim() : '';
+      cleanedForm.remainingWork = form.remainingWork && form.remainingWork.trim() ? form.remainingWork.trim() : '';
+      cleanedForm.number = form.number !== '' && form.number !== null && form.number !== undefined ? form.number : '';
+      cleanedForm.notes = form.notes && form.notes.trim() ? form.notes.trim() : '';
+      
+      // إضافة معرف خاص للحقول المحذوفة
+      if (!form.username || form.username.trim() === '') {
+        cleanedForm._deleteUsername = true;
+      }
+      if (!form.tasks || form.tasks.trim() === '') {
+        cleanedForm._deleteTasks = true;
+      }
+      if (!form.remainingWork || form.remainingWork.trim() === '') {
+        cleanedForm._deleteRemainingWork = true;
+      }
+      if (!form.notes || form.notes.trim() === '') {
+        cleanedForm._deleteNotes = true;
+      }
     } else {
       // في وضع الإنشاء، نرسل فقط الحقول التي تحتوي على قيم
       if (form.username.trim()) cleanedForm.username = form.username;
@@ -201,7 +230,10 @@ function Tasks() {
     }
 
     // إضافة تسجيل للتشخيص
+    console.log('Form data before cleaning:', form);
     console.log('Sending data:', cleanedForm);
+    console.log('Is editing:', isEditing);
+    console.log('Edit task ID:', editTaskId);
 
     try {
       if (isEditing) {
@@ -212,13 +244,18 @@ function Tasks() {
         );
         
         console.log('Response data:', res.data);
+        console.log('Updated task data:', res.data.data);
         
-        setTasks((prev) =>
-          prev.map((task) => (task._id === editTaskId ? res.data.data : task))
-        );
+        // تحقق من البيانات المحدثة
+        if (res.data.data) {
+          console.log('Updated username:', res.data.data.username);
+          console.log('Updated tasks:', res.data.data.tasks);
+        }
         
         // إعادة جلب البيانات للتأكد من التحديث
-        fetchData();
+        console.log('Fetching fresh data from server...');
+        await fetchData();
+        console.log('Data refreshed, current tasks:', tasks);
         
         successNotification('تم التحديث بنجاح');
       } else {
