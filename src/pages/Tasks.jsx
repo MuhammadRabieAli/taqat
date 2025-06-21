@@ -316,32 +316,33 @@ function Tasks() {
   ];
 
   return (
-    <div dir="rtl" lang="ar" className="container m-auto p-4 min-h-screen bg-white">
-      <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-yellow-300">
+    <div dir="rtl" lang="ar" className="container m-auto p-3 sm:p-4 min-h-screen bg-white dark:bg-gray-900">
+      <div className="flex justify-between items-center mb-4 md:mb-6 flex-wrap gap-3 md:gap-4">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 dark:text-yellow-300">
           المهام الخاصة بـ <span className="text-blue-600 dark:text-yellow-400">{mainTitle}</span>
         </h1>
 
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 px-4 py-3 rounded-xl shadow-md">
-            <span className="font-bold text-gray-800 dark:text-white text-lg">
+        <div className="flex items-center flex-wrap gap-2 sm:gap-3 md:gap-4 w-full sm:w-auto mt-2 sm:mt-0">
+          <div className="flex items-center gap-1 md:gap-2 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 px-3 md:px-4 py-2 md:py-3 rounded-lg md:rounded-xl shadow-md flex-1 sm:flex-auto">
+            <span className="font-bold text-gray-800 dark:text-white text-sm md:text-lg truncate">
               التاريخ: {savedDate}
             </span>
             <button
               onClick={handleEditDate}
-              className="text-yellow-500 hover:text-yellow-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+              className="text-yellow-500 hover:text-yellow-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors flex-shrink-0"
               title="تعديل التاريخ"
             >
-              <FiEdit size={18} />
+              <FiEdit size={16} className="md:hidden" />
+              <FiEdit size={18} className="hidden md:block" />
             </button>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3 flex-1 sm:flex-auto">
             <motion.button
               onClick={handleAdd}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white rounded-xl transition-all shadow-lg"
+              className="flex items-center justify-center gap-1 md:gap-2 px-2 sm:px-3 md:px-4 py-2 md:py-3 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white rounded-lg md:rounded-xl transition-all shadow-lg text-sm md:text-base flex-1 sm:flex-auto"
             >
               <FiPlus /> إضافة فقرة
             </motion.button>
@@ -350,11 +351,11 @@ function Tasks() {
               onClick={() => setShowFilterModal(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white rounded-xl transition-all shadow-lg"
+              className="flex items-center justify-center gap-1 md:gap-2 px-2 sm:px-3 md:px-4 py-2 md:py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white rounded-lg md:rounded-xl transition-all shadow-lg text-sm md:text-base flex-1 sm:flex-auto"
             >
               فلترة الأرقام
               {selectedNumbers.length > 0 && (
-                <span className="bg-white text-blue-600 rounded-full px-2 py-1 text-xs font-bold">
+                <span className="bg-white text-blue-600 rounded-full px-1 sm:px-2 py-0.5 sm:py-1 text-xs font-bold">
                   {selectedNumbers.length}
                 </span>
               )}
@@ -364,10 +365,11 @@ function Tasks() {
               onClick={handleDownload}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 hover:from-red-400 hover:to-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400"
+              className="group inline-flex items-center justify-center gap-1 md:gap-2 px-2 sm:px-4 md:px-6 py-2 md:py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg md:rounded-xl shadow-lg transition-all duration-300 hover:from-red-400 hover:to-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 text-sm md:text-base flex-1 sm:flex-auto"
             >
-              <Download className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-1" />
-              تنزيل الفقرات
+              <Download className="w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:-translate-y-1" />
+              <span className="hidden sm:inline">تنزيل الفقرات</span>
+              <span className="sm:hidden">تنزيل</span>
             </motion.button>
           </div>
         </div>
@@ -409,136 +411,130 @@ function Tasks() {
       )}
 
       {/* Enhanced Modern Table Design */}
-      <div className="overflow-x-auto rounded-3xl shadow-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-800 dark:to-gray-900 border-4 border-indigo-200 dark:border-indigo-800">
+      <div className="relative overflow-x-auto overflow-y-hidden flex flex-col rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-800 dark:to-gray-900 border-2 sm:border-4 border-indigo-200 dark:border-indigo-800">
+
+      
         {loading ? (
-          <div className="p-12 text-center text-gray-600 dark:text-gray-300 text-2xl font-bold">
-            <div className="animate-spin rounded-full h-16 w-16 border-4 border-indigo-600 border-t-transparent mx-auto mb-6"></div>
+          <div className="p-6 md:p-12 text-center text-gray-600 dark:text-gray-300 text-lg md:text-2xl font-bold">
+            <div className="animate-spin rounded-full h-12 w-12 md:h-16 md:w-16 border-4 border-indigo-600 border-t-transparent mx-auto mb-4 md:mb-6"></div>
             جاري التحميل...
           </div>
         ) : filteredTasks.length === 0 ? (
-          <div className="p-12 text-center text-gray-600 dark:text-gray-300 text-2xl font-bold">
+          <div className="p-6 md:p-12 text-center text-gray-600 dark:text-gray-300 text-lg md:text-2xl font-bold">
             {selectedNumbers.length > 0 ? 'لا توجد مهام تطابق الفلتر المحدد' : 'لا توجد فقرات لعرضها'}
           </div>
         ) : (
-          <table className="min-w-full border-separate border-spacing-0">
-            <thead className="bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 text-white">
-              <tr>
-                <th className="px-8 py-6 text-center text-2xl font-black uppercase tracking-wider border-2 border-white/20 first:rounded-tl-2xl">
-                  <div className="flex items-center justify-center gap-2">
-                    <span>👤</span>
+          <div className="overflow-x-auto w-full">
+            <table className="w-full table-auto border-separate border-spacing-0">
+              <thead className="bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 text-white">
+                <tr>
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 first:rounded-tl-md md:first:rounded-tl-xl">
                     <span>الاسم</span>
-                  </div>
-                </th>
-                <th className="px-8 py-6 text-center text-2xl font-black uppercase tracking-wider border-2 border-white/20">
-                  <div className="flex items-center justify-center gap-2">
-                    <span>📋</span>
+                  </th>
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20">
                     <span>المهام</span>
-                  </div>
-                </th>
-                <th className="px-8 py-6 text-center text-2xl font-black uppercase tracking-wider border-2 border-white/20">
-                  <div className="flex items-center justify-center gap-2">
-                    <span>📝</span>
+                  </th>
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20">
                     <span>الملاحظات</span>
-                  </div>
-                </th>
-                <th className="px-8 py-6 text-center text-2xl font-black uppercase tracking-wider border-2 border-white/20">
-                  <div className="flex items-center justify-center gap-2">
-                    <span>🔢</span>
+                  </th>
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 w-[20px] sm:w-auto">
                     <span>ت</span>
-                  </div>
-                </th>
-                <th className="px-8 py-6 text-center text-2xl font-black uppercase tracking-wider border-2 border-white/20">
-                  <div className="flex items-center justify-center gap-2">
-                    <span>⏳</span>
+                  </th>
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20">
                     <span>العمل المتبقي</span>
-                  </div>
-                </th>
-                <th className="px-8 py-6 text-center text-2xl font-black uppercase tracking-wider border-2 border-white/20 first:rounded-tr-2xl">
-                  <div className="flex items-center justify-center gap-2">
-                    <span>⚙️</span>
+                  </th>
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 first:rounded-tr-md md:first:rounded-tr-xl w-[40px] sm:w-auto">
                     <span>العمليات</span>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
-              {filteredTasks.map((task, index) => (
-                <motion.tr
-                  key={task._id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className={`
-                    hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 
-                    dark:hover:from-gray-700 dark:hover:to-gray-600 
-                    transition-all duration-300 transform hover:scale-[1.01]
-                    ${index % 2 === 0 ? 'bg-white/80 dark:bg-gray-800/80' : 'bg-gray-50/80 dark:bg-gray-900/80'}
-                  `}
-                >
-                  <td className="px-8 py-8 text-center border-2 border-indigo-100 dark:border-indigo-800/50">
-                    <div 
-                      className="inline-block px-6 py-4 rounded-2xl text-2xl font-black shadow-lg border-2 border-white/50"
-                      style={{ 
-                        backgroundColor: task.usernameColor || nameColors[task.username] || '#6366f1',
-                        color: getContrastColor(task.usernameColor || nameColors[task.username] || '#6366f1'),
-                      }}
-                    >
-                      {task.username || 'غير محدد'}
-                    </div>
-                  </td>  
-                  <td className="px-8 py-8 text-center text-xl font-black text-gray-800 dark:text-gray-200 border-2 border-indigo-100 dark:border-indigo-800/50">
-                    <div className="max-w-xs mx-auto bg-blue-50 dark:bg-blue-900/30 p-4 rounded-xl">
-                      {task.tasks || 'لا توجد مهام'}
-                    </div>
-                  </td>
-                  <td className="px-8 py-8 text-center text-xl font-black text-gray-800 dark:text-gray-200 border-2 border-indigo-100 dark:border-indigo-800/50">
-                    <div className="max-w-xs mx-auto bg-green-50 dark:bg-green-900/30 p-4 rounded-xl truncate" title={task.notes}>
-                      {task.notes || 'لا توجد ملاحظات'}
-                    </div>
-                  </td>
-                  <td className="px-8 py-8 text-center border-2 border-indigo-100 dark:border-indigo-800/50">
-                    <span className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-5 py-3 rounded-full text-2xl font-black shadow-lg">
-                      {task.number || '0'}
-                    </span>
-                  </td>
-                  <td className="px-8 py-8 text-center text-xl font-black text-gray-800 dark:text-gray-200 border-2 border-indigo-100 dark:border-indigo-800/50">
-                    <div className="max-w-xs mx-auto bg-orange-50 dark:bg-orange-900/30 p-4 rounded-xl">
-                      {task.remainingWork || 'لا يوجد عمل متبقي'}
-                    </div>
-                  </td>
-                  
-                  <td className="px-8 py-8 text-center border-2 border-indigo-100 dark:border-indigo-800/50">
-                    <div className="flex justify-center gap-4">
-                      <motion.button
-                        onClick={() => handleEdit(task)}
-                        whileHover={{ scale: 1.15 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="p-4 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600 text-white rounded-2xl transition-all shadow-xl border-2 border-white/50"
-                        title="تعديل"
-                        disabled={isDeleting}
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
+                {filteredTasks.map((task, index) => (
+                  <motion.tr
+                    key={task._id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className={`
+                      hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 
+                      dark:hover:from-gray-700 dark:hover:to-gray-600 
+                      transition-all duration-300 transform hover:scale-[1.01]
+                      ${index % 2 === 0 ? 'bg-white/80 dark:bg-gray-800/80' : 'bg-gray-50/80 dark:bg-gray-900/80'}
+                    `}
+                  >
+                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
+                      <div 
+                        className="inline-block px-1 sm:px-2 md:px-4 py-0.5 sm:py-1 md:py-2 rounded-sm sm:rounded-md md:rounded-lg text-[10px] sm:text-xs md:text-base font-bold sm:font-black shadow border border-white/50 truncate w-full"
+                        style={{ 
+                          backgroundColor: task.usernameColor || nameColors[task.username] || '#6366f1',
+                          color: getContrastColor(task.usernameColor || nameColors[task.username] || '#6366f1'),
+                        }}
                       >
-                        <FiEdit size={20} />
-                      </motion.button>
-                      <motion.button
-                        onClick={() => handleDelete(task._id)}
-                        whileHover={{ scale: 1.15 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="p-4 bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700 text-white rounded-2xl transition-all shadow-xl border-2 border-white/50"
-                        title="حذف"
-                        disabled={isDeleting}
-                      >
-                        {isDeleting ? (
-                          <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
-                        ) : (
-                          <FiTrash2 size={20} />
-                        )}
-                      </motion.button>
-                    </div>
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
+                        {task.username || 'غير محدد'}
+                      </div>
+                    </td>  
+                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center text-[9px] sm:text-xs md:text-sm font-medium text-gray-800 dark:text-gray-200 border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
+                      <div className="w-full mx-auto bg-blue-50 dark:bg-blue-900/30 p-0.5 sm:p-1 md:p-2 rounded-sm sm:rounded-md">
+                        <div className="line-clamp-1 sm:line-clamp-2">
+                          {task.tasks || 'لا توجد مهام'}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center text-[9px] sm:text-xs md:text-sm font-medium text-gray-800 dark:text-gray-200 border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
+                      <div className="w-full mx-auto bg-green-50 dark:bg-green-900/30 p-0.5 sm:p-1 md:p-2 rounded-sm sm:rounded-md" title={task.notes}>
+                        <div className="line-clamp-1 sm:line-clamp-2">
+                          {task.notes || 'لا توجد ملاحظات'}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center border border-indigo-100 dark:border-indigo-800/50">
+                      <span className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-1 sm:px-2 md:px-3 py-0.5 sm:py-1 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-medium">
+                        {task.number || '0'}
+                      </span>
+                    </td>
+                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center text-[9px] sm:text-xs md:text-sm font-medium text-gray-800 dark:text-gray-200 border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
+                      <div className="w-full mx-auto bg-orange-50 dark:bg-orange-900/30 p-0.5 sm:p-1 md:p-2 rounded-sm sm:rounded-md">
+                        <div className="whitespace-normal break-words">
+                          {task.remainingWork || 'لا يوجد عمل متبقي'}
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td className="px-0.5 sm:px-1 md:px-2 py-1 sm:py-2 md:py-3 text-center border border-indigo-100 dark:border-indigo-800/50">
+                      <div className="flex justify-center items-center gap-0.5 sm:gap-1">
+                        <button
+                          onClick={() => handleEdit(task)}
+                          className="p-0.5 sm:p-1 md:p-1.5 bg-amber-400 hover:bg-amber-500 text-white rounded-sm sm:rounded-md transition-colors"
+                          title="تعديل"
+                          disabled={isDeleting}
+                        >
+                          <FiEdit size={8} className="sm:hidden" />
+                          <FiEdit size={10} className="hidden sm:inline md:hidden" />
+                          <FiEdit size={14} className="hidden md:inline" />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(task._id)}
+                          className="p-0.5 sm:p-1 md:p-1.5 bg-red-500 hover:bg-red-600 text-white rounded-sm sm:rounded-md transition-colors"
+                          title="حذف"
+                          disabled={isDeleting}
+                        >
+                          {isDeleting ? (
+                            <div className="animate-spin rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 md:h-3.5 md:w-3.5 border border-white border-t-transparent"></div>
+                          ) : (
+                            <>
+                              <FiTrash2 size={8} className="sm:hidden" />
+                              <FiTrash2 size={10} className="hidden sm:inline md:hidden" />
+                              <FiTrash2 size={14} className="hidden md:inline" />
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
@@ -547,29 +543,30 @@ function Tasks() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
         >
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className="relative bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl w-[90%] max-w-3xl max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-gray-700"
+            className="relative bg-white dark:bg-gray-900 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-gray-700"
             dir="rtl"
             lang="ar"
           >
             <button
               onClick={handleModalClose}
-              className="absolute top-4 left-4 text-gray-600 dark:text-white hover:text-red-500 transition-colors"
+              className="absolute top-2 sm:top-4 left-2 sm:left-4 text-gray-600 dark:text-white hover:text-red-500 transition-colors"
               disabled={isSubmitting}
             >
-              <IoMdClose size={28} />
+              <IoMdClose size={24} className="sm:hidden" />
+              <IoMdClose size={28} className="hidden sm:block" />
             </button>
 
-            <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-right">
+            <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-900 dark:text-white text-right pr-2">
               {isEditing ? 'تعديل المهمة' : 'إضافة مهمة جديدة'}
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-6 text-right">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 text-right">
               <div className="space-y-6">
                 <div>
                   <label className="block text-xl mb-3 text-gray-900 dark:text-gray-200 font-black">التاريخ</label>
