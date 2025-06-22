@@ -411,7 +411,7 @@ function Tasks() {
       )}
 
       {/* Enhanced Modern Table Design */}
-      <div className="relative overflow-x-auto overflow-y-hidden flex flex-col rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-800 dark:to-gray-900 border-2 sm:border-4 border-indigo-200 dark:border-indigo-800">
+      <div className="relative overflow-hidden flex flex-col rounded-xl sm:rounded-2xl md:rounded-3xl shadow-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-gray-800 dark:to-gray-900 border-2 sm:border-4 border-indigo-200 dark:border-indigo-800">
 
       
         {loading ? (
@@ -424,26 +424,26 @@ function Tasks() {
             {selectedNumbers.length > 0 ? 'لا توجد مهام تطابق الفلتر المحدد' : 'لا توجد فقرات لعرضها'}
           </div>
         ) : (
-          <div className="overflow-x-auto w-full">
+          <div className="w-full">
             <table className="w-full table-auto border-separate border-spacing-0">
               <thead className="bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 text-white">
                 <tr>
-                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 first:rounded-tl-md md:first:rounded-tl-xl">
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[11px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 first:rounded-tl-md md:first:rounded-tl-xl w-[18%] sm:w-[18%] md:w-auto">
                     <span>الاسم</span>
                   </th>
-                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20">
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[11px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 w-[24%] sm:w-[24%] md:w-auto">
                     <span>المهام</span>
                   </th>
-                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20">
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[11px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 w-[20%] sm:w-[20%] md:w-auto">
                     <span>الملاحظات</span>
                   </th>
-                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 w-[20px] sm:w-auto">
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[11px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 w-[8%] sm:w-[8%] md:w-auto">
                     <span>ت</span>
                   </th>
-                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20">
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[11px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 w-[22%] sm:w-[22%] md:w-auto">
                     <span>العمل المتبقي</span>
                   </th>
-                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[10px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 first:rounded-tr-md md:first:rounded-tr-xl w-[40px] sm:w-auto">
+                  <th className="px-1 sm:px-3 md:px-6 py-1 sm:py-3 md:py-5 text-center text-[11px] sm:text-sm md:text-lg font-bold uppercase tracking-wider border border-white/20 first:rounded-tr-md md:first:rounded-tr-xl w-[8%] sm:w-[8%] md:w-auto">
                     <span>العمليات</span>
                   </th>
                 </tr>
@@ -464,7 +464,7 @@ function Tasks() {
                   >
                     <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
                       <div 
-                        className="inline-block px-1 sm:px-2 md:px-4 py-0.5 sm:py-1 md:py-2 rounded-sm sm:rounded-md md:rounded-lg text-[10px] sm:text-xs md:text-base font-bold sm:font-black shadow border border-white/50 truncate w-full"
+                        className="inline-block px-1 sm:px-2 md:px-4 py-0.5 sm:py-1 md:py-2 rounded-sm sm:rounded-md md:rounded-lg text-[11px] sm:text-sm md:text-base font-bold sm:font-black shadow border border-white/50 truncate w-full"
                         style={{ 
                           backgroundColor: task.usernameColor || nameColors[task.username] || '#6366f1',
                           color: getContrastColor(task.usernameColor || nameColors[task.username] || '#6366f1'),
@@ -473,27 +473,27 @@ function Tasks() {
                         {task.username || 'غير محدد'}
                       </div>
                     </td>  
-                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center text-[9px] sm:text-xs md:text-sm font-medium text-gray-800 dark:text-gray-200 border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
-                      <div className="w-full mx-auto bg-blue-50 dark:bg-blue-900/30 p-0.5 sm:p-1 md:p-2 rounded-sm sm:rounded-md">
-                        <div className="line-clamp-1 sm:line-clamp-2">
+                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center text-[10px] sm:text-sm md:text-base font-medium text-gray-800 dark:text-gray-200 border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
+                      <div className="w-full mx-auto bg-blue-50 dark:bg-blue-900/30 p-1 sm:p-2 md:p-3 rounded-sm sm:rounded-md">
+                        <div className="whitespace-normal break-words">
                           {task.tasks || 'لا توجد مهام'}
                         </div>
                       </div>
                     </td>
-                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center text-[9px] sm:text-xs md:text-sm font-medium text-gray-800 dark:text-gray-200 border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
-                      <div className="w-full mx-auto bg-green-50 dark:bg-green-900/30 p-0.5 sm:p-1 md:p-2 rounded-sm sm:rounded-md" title={task.notes}>
-                        <div className="line-clamp-1 sm:line-clamp-2">
+                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center text-[10px] sm:text-sm md:text-base font-medium text-gray-800 dark:text-gray-200 border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
+                      <div className="w-full mx-auto bg-green-50 dark:bg-green-900/30 p-1 sm:p-2 md:p-3 rounded-sm sm:rounded-md" title={task.notes}>
+                        <div className="whitespace-normal break-words">
                           {task.notes || 'لا توجد ملاحظات'}
                         </div>
                       </div>
                     </td>
                     <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center border border-indigo-100 dark:border-indigo-800/50">
-                      <span className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-1 sm:px-2 md:px-3 py-0.5 sm:py-1 md:py-2 rounded-full text-[10px] sm:text-xs md:text-sm font-medium">
+                      <span className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-1 sm:px-2 md:px-3 py-0.5 sm:py-1 md:py-2 rounded-full text-[11px] sm:text-sm md:text-base font-bold">
                         {task.number || '0'}
                       </span>
                     </td>
-                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center text-[9px] sm:text-xs md:text-sm font-medium text-gray-800 dark:text-gray-200 border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
-                      <div className="w-full mx-auto bg-orange-50 dark:bg-orange-900/30 p-0.5 sm:p-1 md:p-2 rounded-sm sm:rounded-md">
+                    <td className="px-1 sm:px-2 md:px-4 py-1 sm:py-3 md:py-4 text-center text-[10px] sm:text-sm md:text-base font-medium text-gray-800 dark:text-gray-200 border border-indigo-100 dark:border-indigo-800/50 whitespace-normal">
+                      <div className="w-full mx-auto bg-orange-50 dark:bg-orange-900/30 p-1 sm:p-2 md:p-3 rounded-sm sm:rounded-md">
                         <div className="whitespace-normal break-words">
                           {task.remainingWork || 'لا يوجد عمل متبقي'}
                         </div>
